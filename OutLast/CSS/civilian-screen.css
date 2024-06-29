@@ -1,0 +1,497 @@
+/* Ensure .screens-container is relative to the .screen-square-inner */
+.screens-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* Style for individual screens */
+.screens-container > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.screens-container > div.active {
+  display: block;
+}
+
+/* Example screen styles */
+.map-screen, .chat-screen, .wiki-screen, .lock-down-screen, .danger-screen {
+  width: 100%; /* Match the width and height of the container */
+  height: 100%;
+  background-color: blueviolet; /* Example color, adjust as needed */
+}
+
+/* Ensure .screen-square-inner is styled properly */
+.screen-square-inner {
+  position: relative;
+  height: 480px;
+  width: 480px;
+  border-radius: 10%;
+  border: 2px solid #121212;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #353535;
+}
+
+/* Style for images to fit within the .screen-square-inner */
+.map-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the div without stretching */
+}
+
+/* Position buttons within the map screen */
+.buttons-map {
+  display: flex;
+  position: absolute;
+  top: 350px; /* Adjust to position the buttons */
+  left: 50%;
+  transform: translateX(-50%); /* Center buttons horizontally */
+  gap: 10px;
+}
+
+.button-map {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content horizontally */
+  position: relative;
+  margin-top: 20px; /* Adjust this value to move the button lower */
+  padding: 0.3em 1em; /* Reduce padding to make the button smaller */
+  margin: 10px;
+  border: mediumspringgreen solid 0.15em;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  font-size: 1em; /* Reduce font size to make the button smaller */
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+.button-map p {
+  z-index: 1;
+}
+
+.button-map:hover {
+  color: #b0ffc5;
+}
+
+.button-map:active {
+  border-color: rgb(123, 255, 132);
+}
+
+.button-map::after, .button-map::before {
+  content: "";
+  position: absolute;
+  width: 5em; /* Reduce the width to match the smaller button size */
+  aspect-ratio: 1;
+  background: rgb(12, 250, 0);
+  opacity: 50%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button-map::before {
+  left: 0;
+  transform: translateX(-5em); /* Adjust to match the new width */
+}
+
+.button-map::after {
+  right: 0;
+  transform: translateX(5em); /* Adjust to match the new width */
+}
+
+.button-map:hover:before {
+  transform: translateX(-1em);
+}
+
+.button-map:hover:after {
+  transform: translateX(1em);
+}
+
+.button-map:active:before,
+.button-map:active:after {
+  background: teal;
+}
+
+/* Ensure the chat screen and its contents fit within the parent container */
+.chat-screen {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(50, 50, 50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../IMAGES/bkg3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.chat-container {
+  width: 90%;
+  height: 90%;
+  background-color: #121212;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+.input-area {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+#chat-input {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+#send-button {
+  background-color: mediumspringgreen;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#send-button:hover {
+  background-color: #45d490;
+}
+
+/* Wiki Screen Styles */
+/* Wiki Screen Styles */
+.wiki-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #303030;
+  color: #333;
+  background-image: url("../IMAGES/bkg3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wiki-search {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.wiki-search input {
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  margin-right: 10px;
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.wiki-search button {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: none;
+  border-radius: 0.25em;
+  background-color: rgb(0, 83, 51);
+  color: white;
+  cursor: pointer;
+}
+
+.wiki-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.wiki-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 1em;
+  margin: 0 10px;
+  border: 1px solid rgb(0, 83, 51);
+  border-radius: 0.25em;
+  background-color: rgb(0, 83, 51);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 300ms, color 300ms;
+}
+
+.wiki-button:hover {
+  background-color: #rgb(0, 83, 51);
+}
+
+.wiki-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.wiki-entry {
+  display: none;
+  width: 100%;
+}
+
+.wiki-entry.active {
+  display: block;
+}
+
+.wiki-entry h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.wiki-entry .wiki-text {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #2f2f2f;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+}
+
+.wiki-chatbot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.wiki-chatbot input {
+  padding: 0.5em;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 400px;
+  background: #2f2f2f;
+  color: #fff;
+}
+
+.wiki-chatbot button {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: none;
+  border-radius: 0.25em;
+  background-color: rgb(0, 83, 51);
+  color: white;
+  cursor: pointer;
+}
+
+.wiki-chat-output {
+  width: 100%;
+  max-width: 600px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #2f2f2f;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  margin-top: 10px;
+}
+
+.main-menu {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+  background-image: url("../IMAGES/bkg3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logo {
+  width: 100px; /* Adjust size as needed */
+  margin-bottom: 20px;
+}
+
+.menu-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px 20px;
+  border: solid 0.15em mediumspringgreen;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.menu-button:hover {
+  color: #b0ffc5;
+}
+
+.menu-button:active {
+  border-color: rgb(123, 255, 132);
+}
+
+
+.main-logo {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.main-menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em 2em;
+  border: mediumspringgreen solid 0.15em;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  font-size: 1.5em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+.main-button:hover {
+  color: #212121;
+}
+
+.main-button:active {
+  border-color: teal;
+}
+
+.lock-down-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #303030;
+  color: #333;
+  background-image: url("../IMAGES/escape.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.alien-search-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #303030;
+  color: #333;
+  background-image: url("../IMAGES/search.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#cancel-lockdown-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em 2em;
+  border: mediumspringgreen solid 0.15em;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  font-size: 1.5em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+#cancel-lockdown-button:hover {
+  color: #212121;
+}
+
+#cancel-lockdown-button:active {
+  border-color: teal;
+}
+
+
+#cancel-alien-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6em 2em;
+  border: mediumspringgreen solid 0.15em;
+  border-radius: 0.25em;
+  color: mediumspringgreen;
+  font-size: 1.5em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border 300ms, color 300ms;
+  user-select: none;
+}
+
+#cancel-alien-button:hover {
+  color: #212121;
+}
+
+#cancel-alien-button:active {
+  border-color: teal;
+}
